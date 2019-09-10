@@ -31,7 +31,7 @@ public class Pedido  implements Serializable {
 	private Pagamento pagamento;
 	
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
+	@JoinColumn(name = "cliente_entrega_id")
 	private Cliente cliente;
 	
 	@ManyToOne
