@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.agnaldo.cursomc.domain.enuns.EstadoPagamento;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pagamento  implements Serializable {
@@ -33,10 +35,10 @@ public abstract class Pagamento  implements Serializable {
 		
 	}
 
-	public Pagamento(Integer id, Integer estado, Pedido pedido) {
+	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estado = estado;
+		this.estado = estado.getCod();
 		this.pedido = pedido;
 	}
 

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.agnaldo.cursomc.domain.enuns.EstadoPagamento;
+
 @Entity
 public class PagamentoComBoleto extends Pagamento {
 
@@ -22,7 +24,7 @@ public class PagamentoComBoleto extends Pagamento {
 		
 	}
 
-	public PagamentoComBoleto(Integer id, Integer estado, Pedido pedido,Date dataPagamento,Date dataVencimento) {
+	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido,Date dataPagamento,Date dataVencimento) {
 		super(id, estado, pedido);
 		this.dataPagamento = dataPagamento;
 		this.dataVencimento = dataVencimento;

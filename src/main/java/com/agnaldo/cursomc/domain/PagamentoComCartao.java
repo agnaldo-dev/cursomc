@@ -2,6 +2,8 @@ package com.agnaldo.cursomc.domain;
 
 import javax.persistence.Entity;
 
+import com.agnaldo.cursomc.domain.enuns.EstadoPagamento;
+
 @Entity
 public class PagamentoComCartao extends Pagamento {
 
@@ -9,6 +11,15 @@ public class PagamentoComCartao extends Pagamento {
 
 	
 	private Integer numeroDeParcelas;
+
+	public PagamentoComCartao() {
+		
+	}
+	
+	public PagamentoComCartao(Integer id, EstadoPagamento estado, Pedido pedido,Integer parcelas) {
+		super(id, estado, pedido);
+		this.numeroDeParcelas = parcelas;
+	}
 
 	public Integer getNumeroDeParcelas() {
 		return numeroDeParcelas;
