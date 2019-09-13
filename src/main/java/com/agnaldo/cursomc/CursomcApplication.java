@@ -123,17 +123,23 @@ public class CursomcApplication implements CommandLineRunner {
 		 * Criando cliente com endereco e telefones
 		 */
 
-		Cliente cliente = new Cliente(null, "Sara", "sara@teste.com", "34343333", TipoCliente.PESSOAFISICA);
+		Cliente client1 = new Cliente(null, "Sara", "sara@teste.com", "34343333", TipoCliente.PESSOAFISICA);
 
-		cliente.getTelefones().addAll(Arrays.asList("343434", "3434343"));
+		Cliente client2 = new Cliente(null, "Livia", "livia@teste.com", "09333", TipoCliente.PESSOAJURIDICA);
+        
+		client1.getTelefones().addAll(Arrays.asList("343434", "3434343"));
 
-		Endereco end1 = new Endereco(null, "Rua flores", "454", "Comercial flores", "centro", "34343", cliente, cid1);
+		client2.getTelefones().addAll(Arrays.asList("8834", "994343", "328977"));
 
-		Endereco end2 = new Endereco(null, "Avenida flores", "434", "Comercial", "centro", "344", cliente, cid1);
+		Endereco end1 = new Endereco(null, "Rua flores", "454", "Comercial flores", "centro", "34343", client1, cid1);
 
-		cliente.getEnderecos().addAll(Arrays.asList(end1, end2));
+		Endereco end2 = new Endereco(null, "Avenida flores", "434", "Comercial", "centro", "344", client2, cid1);
 
-		clienteRepository.saveAll(Arrays.asList(cliente));
+		client1.getEnderecos().addAll(Arrays.asList(end1));
+		
+		client2.getEnderecos().addAll(Arrays.asList(end2));
+
+		clienteRepository.saveAll(Arrays.asList(client1, client2));
 
 		enderecoRepository.saveAll(Arrays.asList(end1, end2));
 
@@ -143,9 +149,9 @@ public class CursomcApplication implements CommandLineRunner {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		Pedido ped1 = new Pedido(null, sdf.parse("11/09/2019 12:40"), cliente, end1);
+		Pedido ped1 = new Pedido(null, sdf.parse("11/09/2019 12:40"), client1, end1);
 
-		Pedido ped2 = new Pedido(null, sdf.parse("18/09/2019 13:32"), cliente, end2);
+		Pedido ped2 = new Pedido(null, sdf.parse("18/09/2019 13:32"), client1, end2);
 
 		Pagamento pag1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 
@@ -155,7 +161,7 @@ public class CursomcApplication implements CommandLineRunner {
 
 		ped2.setPagamento(pag2);
 
-		cliente.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		client1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 
