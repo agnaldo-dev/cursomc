@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.Servlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,6 +58,17 @@ public class CategoriaResource {
 		
 		return ResponseEntity.created(uri).build();
 	}
+	
+	@RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id){
+		
+		categoria.setId(id);
+		
+		service.update(categoria);
+		
+		return ResponseEntity.noContent().build();
+	}
+	
 	
 }
 	
